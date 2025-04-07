@@ -1,25 +1,16 @@
-@php
-use Illuminate\Support\Facades\Route;
-@endphp
-
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Approval Status -->
     @if (session('error'))
         <div class="mb-4 font-medium text-sm text-red-600">
             {{ session('error') }}
         </div>
     @endif
 
-    @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-    @endif
+    <h2 class="text-2xl font-bold text-center mb-6">Student Login</h2>
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('student.login') }}">
         @csrf
 
         <!-- Email Address -->
@@ -50,12 +41,6 @@ use Illuminate\Support\Facades\Route;
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
@@ -64,10 +49,10 @@ use Illuminate\Support\Facades\Route;
 
     <div class="mt-4 text-center">
         <p class="text-sm text-gray-600">
-            Don't have an account? 
-            <a href="{{ route('register.pending.form') }}" class="text-indigo-600 hover:text-indigo-900">
-                Register for approval
+            Are you a tenant/admin? 
+            <a href="{{ route('login') }}" class="text-indigo-600 hover:text-indigo-900">
+                Login here
             </a>
         </p>
     </div>
-</x-guest-layout>
+</x-guest-layout> 

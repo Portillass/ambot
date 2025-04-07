@@ -12,7 +12,17 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+        @php
+            use Illuminate\Support\Facades\Route;
+        @endphp
+        
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <!-- Fallback when Vite is not running -->
+        @if(!app()->environment('local'))
+            <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+            <script src="{{ asset('build/assets/app.js') }}" defer></script>
+        @endif
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

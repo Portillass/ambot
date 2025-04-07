@@ -56,6 +56,25 @@ Route::middleware(['auth', SuperAdminMiddleware::class])->prefix('admin')->name(
 // Tenant routes
 Route::middleware(['auth', 'verified', CheckAccountApproval::class])->group(function () {
     Route::get('/tenant/dashboard', [TenantController::class, 'dashboard'])->name('tenant.dashboard');
+    
+    // Student management routes
+    Route::resource('students', \App\Http\Controllers\StudentController::class);
+});
+
+// Student routes
+Route::prefix('student')->name('student.')->group(function () {
+    // Student login routes
+    Route::get('/login', [\App\Http\Controllers\Auth\StudentLoginController::class, 'showLoginForm'])
+        ->name('login');
+    Route::post('/login', [\App\Http\Controllers\Auth\StudentLoginController::class, 'login']);
+    Route::post('/logout', [\App\Http\Controllers\Auth\StudentLoginController::class, 'logout'])
+        ->name('logout');
+    
+    // Student dashboard route (protected)
+    Route::middleware('auth:student')->group(function () {
+        Route::get('/dashboard', [\App\Http\Controllers\StudentDashboardController::class, 'dashboard'])
+            ->name('dashboard');
+    });
 });
 
 require __DIR__.'/auth.php';

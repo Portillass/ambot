@@ -1,3 +1,8 @@
+@php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+@endphp
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -18,22 +23,10 @@
                     
                     <div class="mb-6">
                         <h4 class="text-md font-medium mb-2">Tenant Management</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h5 class="font-medium">User Management</h5>
-                                <p class="text-sm text-gray-600 mt-1">Manage your tenant users and their permissions</p>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm mt-2 inline-block">Manage Users →</a>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h5 class="font-medium">Settings</h5>
-                                <p class="text-sm text-gray-600 mt-1">Configure your tenant settings and preferences</p>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm mt-2 inline-block">Manage Settings →</a>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <h5 class="font-medium">Reports</h5>
-                                <p class="text-sm text-gray-600 mt-1">View and export reports for your tenant</p>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm mt-2 inline-block">View Reports →</a>
-                            </div>
+                        <div class="mt-4">
+                            <a href="{{ route('students.create') }}" class="inline-flex items-center px-4 py-2 bg-black border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                <span class="text-white font-bold">Add Student</span>
+                            </a>
                         </div>
                     </div>
                 </div>
